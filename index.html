@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>The Evolution of UI - Websites Across Different Eras</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { height: 100%; overflow-y: auto; scroll-behavior: smooth; }
+        
+        /* Full-screen sections for each era */
+        .era-section {
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 90s Web 1.0 Style (NCSA Mosaic) */
+        .web1 {
+            background: #808080 url('https://www.transparenttextures.com/patterns/noisy.png');
+        }
+        .web1 .window {
+            width: 800px; height: 600px; background: #fff; border: 3px solid #000;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5), inset 0 0 5px #ccc;
+            background-image: url('https://www.transparenttextures.com/patterns/noise.png');
+            border-radius: 2px; overflow: hidden;
+        }
+        .web1 .title-bar {
+            background: linear-gradient(to right, #000080, #a0a0a0); height: 25px; padding: 2px;
+            color: #fff; font-size: 14px; display: flex; align-items: center; cursor: move;
+            border-bottom: 2px solid #000;
+        }
+        .web1 .title-text { flex-grow: 1; padding-left: 5px; text-shadow: 1px 1px #000; }
+        .web1 .menu-bar {
+            background: #c0c0c0; height: 20px; border-bottom: 2px solid #000; display: flex;
+            align-items: center; padding-left: 5px; box-shadow: inset 0 1px #fff;
+        }
+        .web1 .menu-item { margin-right: 10px; cursor: default; font-weight: bold; text-shadow: 1px 1px #000; }
+        .web1 .toolbar {
+            background: #d3d3d3; height: 30px; border-bottom: 2px solid #000; display: flex;
+            align-items: center; padding: 2px; box-shadow: inset 0 1px #fff;
+        }
+        .web1 .content {
+            padding: 10px; color: #000; font-size: 12px; line-height: 1.5;
+            height: calc(100% - 95px); overflow: auto; text-shadow: 0 0 1px #ccc;
+        }
+        .web1 .content a { color: #0000EE; text-decoration: underline; }
+        .web1 .content a:visited { color: #551A8B; }
+        .web1 .status-bar {
+            background: #c0c0c0; height: 20px; border-top: 2px solid #000; display: flex;
+            align-items: center; justify-content: space-between; padding: 2px; font-size: 12px;
+            color: #000; box-shadow: inset 0 1px #fff;
+        }
+
+        /* Early 2000s Skeuomorphic Style */
+        .web2 {
+            background: linear-gradient(to bottom, #e6f0fa, #ffffff);
+        }
+        .web2 .window {
+            width: 900px; height: 650px; background: #fff; border: 1px solid #000;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); background: linear-gradient(to bottom, #e6f0fa, #ffffff);
+            border-radius: 8px; overflow: hidden;
+        }
+        .web2 .title-bar {
+            background: linear-gradient(to right, #003087, #00b7eb); height: 30px; padding: 5px;
+            color: #fff; font-family: 'Arial', sans-serif; font-size: 16px; display: flex;
+            align-items: center; border-bottom: 1px solid #000; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        .web2 .title-text { flex-grow: 1; padding-left: 5px; }
+        .web2 .menu-bar {
+            background: #f0f0f0; height: 25px; padding: 5px; display: flex; align-items: center;
+            box-shadow: inset 0 1px #fff, 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        .web2 .menu-item { margin-right: 10px; cursor: default; font-family: 'Arial', sans-serif; }
+        .web2 .toolbar {
+            background: #e0e0e0; height: 40px; padding: 5px; display: flex; align-items: center;
+            border-bottom: 1px solid #999;
+        }
+        .web2 .content {
+            padding: 15px; font-family: 'Arial', sans-serif; font-size: 14px; line-height: 1.6;
+            height: calc(100% - 115px); overflow: auto; background: #fff; border: 1px inset #999;
+        }
+        .web2 .status-bar {
+            background: #f0f0f0; height: 25px; padding: 5px; display: flex; align-items: center;
+            justify-content: space-between; font-family: 'Arial', sans-serif; font-size: 12px;
+            border-top: 1px solid #999;
+        }
+
+        /* Modern Minimalism Style (Chrome Browser Look) */
+        .web3 {
+            background: #f9f9f9;
+        }
+        .web3 .window {
+            width: 1000px; height: 700px; background: #fff; border: none;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); border-radius: 8px; overflow: hidden;
+            position: relative;
+        }
+        .web3 .chrome-frame {
+            background: #f1f3f4; height: 80px; border-bottom: 1px solid #dadce0;
+            display: flex; flex-direction: column; font-family: 'Roboto', sans-serif;
+        }
+        .web3 .chrome-tabs {
+            display: flex; align-items: center; height: 40px; padding: 0 10px;
+        }
+        .web3 .tab {
+            background: #e8eaed; padding: 8px 20px; margin-right: 5px; border-radius: 8px 8px 0 0;
+            font-size: 14px; color: #5f6368; cursor: pointer;
+        }
+        .web3 .tab.active {
+            background: #fff; color: #202124; border-bottom: none;
+        }
+        .web3 .chrome-controls {
+            display: flex; justify-content: space-between; align-items: center; height: 40px; padding: 0 10px;
+        }
+        .web3 .window-controls {
+            display: flex; gap: 8px;
+        }
+        .web3 .window-control {
+            width: 12px; height: 12px; border-radius: 50%; cursor: pointer;
+        }
+        .web3 .window-control.minimize { background: #f4b400; }
+        .web3 .window-control.maximize { background: #0f9d58; }
+        .web3 .window-control.close { background: #db4437; }
+        .web3 .toolbar {
+            flex-grow: 1; display: flex; align-items: center; gap: 10px;
+        }
+        .web3 .toolbar-button {
+            width: 24px; height: 24px; background: transparent; border: none;
+            display: flex; align-items: center; justify-content: center; color: #5f6368;
+            font-size: 16px; cursor: pointer; transition: color 0.3s ease;
+        }
+        .web3 .toolbar-button:hover { color: #202124; }
+        .web3 .address-bar {
+            flex-grow: 1; background: #fff; border: 1px solid #dadce0; border-radius: 20px;
+            height: 30px; padding: 0 15px; display: flex; align-items: center; font-size: 14px;
+            color: #5f6368; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        .web3 .content {
+            height: calc(100% - 80px); overflow-y: auto; font-family: 'Roboto', sans-serif;
+            background: #fff;
+        }
+
+        /* Shared Styles */
+        .window-button { width: 16px; height: 16px; margin-left: 2px; background: #c0c0c0; border: 1px solid #000; cursor: default; box-shadow: inset 1px 1px #fff; }
+        .window-button:last-child { background: #ff0000; }
+        .toolbar-button { width: 24px; height: 24px; background: #c0c0c0; border: 1px solid #000; margin-right: 5px; cursor: pointer; box-shadow: inset 1px 1px #fff; display: flex; align-items: center; justify-content: center; color: #000; font-size: 16px; transition: background 0.2s; }
+        .toolbar-button:hover { background: #a0a0a0; }
+        .url-field { flex-grow: 1; background: #fff; border: 1px solid #000; height: 20px; padding: 2px; font-size: 12px; color: #000; font-family: 'Courier New', monospace; box-shadow: inset 0 0 3px #999; }
+        .resize-handle { width: 15px; height: 15px; background: #c0c0c0; border: 1px solid #000; position: absolute; bottom: 0; right: 0; cursor: se-resize; box-shadow: inset 1px 1px #fff; z-index: 1001; }
+
+        /* Apple Website Styling */
+        .apple-content {
+            text-align: center; color: #1d1d1f;
+        }
+        .apple-content section {
+            padding: 50px 20px; opacity: 0; transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .apple-content section.visible {
+            opacity: 1; transform: translateY(0);
+        }
+        .apple-content h1 {
+            font-size: 56px; font-weight: 600; margin-bottom: 10px;
+        }
+        .apple-content h2 {
+            font-size: 28px; font-weight: 400; margin-bottom: 20px;
+        }
+        .apple-content .links a {
+            color: #06c; font-size: 21px; margin: 0 20px; text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .apple-content .links a:hover {
+            color: #003087;
+        }
+        .apple-content img {
+            max-width: 100%; height: auto; margin: 20px 0;
+        }
+        .apple-content .grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px; padding: 20px;
+        }
+        .apple-content .grid-item {
+            background: #000; color: #fff; padding: 20px; border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+        .apple-content .grid-item:hover {
+            transform: scale(1.05);
+        }
+        .apple-content .grid-item h3 {
+            font-size: 24px; font-weight: 600; margin-bottom: 10px;
+        }
+        .apple-content .grid-item p {
+            font-size: 16px; font-weight: 400; margin-bottom: 10px;
+        }
+        .apple-content footer {
+            background: #f5f5f7; padding: 20px; font-size: 12px; color: #6e6e73;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .apple-content footer a {
+            color: #424245; text-decoration: none;
+        }
+        .apple-content footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- 90s Web 1.0 Section -->
+    <div class="era-section web1">
+        <div class="window" id="window1">
+            <div class="title-bar">
+                <div class="title-text" id="titleText1">NCSA Mosaic 2.7b6 [The World Wide Web project]</div>
+                <div class="window-buttons">
+                    <div class="window-button" title="Minimize"></div>
+                    <div class="window-button" title="Maximize"></div>
+                    <div class="window-button" title="Close"></div>
+                </div>
+            </div>
+            <div class="menu-bar">
+                <div class="menu-item">File</div>
+                <div class="menu-item">Options</div>
+                <div class="menu-item">Navigate</div>
+                <div class="menu-item">Help</div>
+            </div>
+            <div class="toolbar">
+                <div class="toolbar-button" id="backButton1" title="Back"><i class="fas fa-arrow-left"></i></div>
+                <div class="toolbar-button" id="forwardButton1" title="Forward"><i class="fas fa-arrow-right"></i></div>
+                <div class="toolbar-button" id="homeButton1" title="Home"><i class="fas fa-home"></i></div>
+                <div class="toolbar-button" id="refreshButton1" title="Refresh"><i class="fas fa-sync-alt"></i></div>
+                <input type="text" class="url-field" id="urlField1" value="http://info.cern.ch/hypertext/WWW/TheProject.html">
+            </div>
+            <div class="content" id="contentArea1">
+                <h1>World Wide Web</h1>
+                <p>The WorldWideWeb (W3) is a wide-area <a href="#">hypermedia</a> information retrieval initiative aiming to give universal access to a large universe of documents.</p>
+                <p>Everything there is online about W3 is linked directly or indirectly to this document, including an <a href="#">executive summary</a> of the project, <a href="#">Mailing lists</a>, <a href="#">Policy</a>, November's <a href="#">W3 news</a>, <a href="#">Frequently Asked Questions</a>.</p>
+                <h2>What's out there?</h2>
+                <p><a href="#">Pointers to the world's online information</a>, <a href="#">subjects</a>, <a href="#">W3 servers</a>, etc.</p>
+            </div>
+            <div class="status-bar">
+                <div class="status-text" id="statusText1">http://info.cern.ch/hypertext/WWW/TheProject.html</div>
+                <div class="progress">01 | 8:05 - Intro ></div>
+            </div>
+            <div class="resize-handle" id="resizeHandle1"></div>
+        </div>
+    </div>
+
+    <!-- Early 2000s Skeuomorphic Section -->
+    <div class="era-section web2">
+        <div class="window" id="window2">
+            <div class="title-bar">
+                <div class="title-text" id="titleText2">My Web Portal - 2000s Edition</div>
+                <div class="window-buttons">
+                    <div class="window-button" title="Minimize"></div>
+                    <div class="window-button" title="Maximize"></div>
+                    <div class="window-button" title="Close"></div>
+                </div>
+            </div>
+            <div class="menu-bar">
+                <div class="menu-item">Home</div>
+                <div class="menu-item">News</div>
+                <div class="menu-item">Email</div>
+                <div class="menu-item">Search</div>
+            </div>
+            <div class="toolbar">
+                <div class="toolbar-button" id="backButton2" title="Back"><i class="fas fa-arrow-left"></i></div>
+                <div class="toolbar-button" id="forwardButton2" title="Forward"><i class="fas fa-arrow-right"></i></div>
+                <div class="toolbar-button" id="homeButton2" title="Home"><i class="fas fa-home"></i></div>
+                <div class="toolbar-button" id="refreshButton2" title="Refresh"><i class="fas fa-sync-alt"></i></div>
+                <input type="text" class="url-field" id="urlField2" value="http://www.myportal.com">
+            </div>
+            <div class="content" id="contentArea2">
+                <h1 style="font-family: 'Arial', sans-serif; color: #003087;">Welcome to My Web Portal</h1>
+                <p style="background: #fff url('https://www.transparenttextures.com/patterns/wood-pattern.png'); padding: 10px; border: 2px outset #999;">Your one-stop shop for news, email, and more! Check out our <a href="#" style="color: #ff4500; text-decoration: underline;">cool features</a>.</p>
+                <button style="padding: 5px 10px; background: #e0e0e0; border: 2px outset #999; cursor: pointer;">Click Me!</button>
+            </div>
+            <div class="status-bar">
+                <div class="status-text" id="statusText2">http://www.myportal.com</div>
+                <div class="progress">Connected</div>
+            </div>
+            <div class="resize-handle" id="resizeHandle2"></div>
+        </div>
+    </div>
+
+    <!-- Modern Minimalism Section (Chrome Browser with Apple Website) -->
+    <div class="era-section web3">
+        <div class="window" id="window3">
+            <div class="chrome-frame">
+                <div class="chrome-tabs">
+                    <div class="tab active">Apple</div>
+                    <div class="tab">Gmail</div>
+                    <div class="tab">YouTube</div>
+                </div>
+                <div class="chrome-controls">
+                    <div class="window-controls">
+                        <div class="window-control minimize"></div>
+                        <div class="window-control maximize"></div>
+                        <div class="window-control close"></div>
+                    </div>
+                    <div class="toolbar">
+                        <div class="toolbar-button" id="backButton3" title="Back"><i class="fas fa-arrow-left"></i></div>
+                        <div class="toolbar-button" id="forwardButton3" title="Forward"><i class="fas fa-arrow-right"></i></div>
+                        <div class="address-bar" id="urlField3">
+                            <i class="fas fa-lock" style="margin-right: 5px; color: #0f9d58;"></i>
+                            https://www.apple.com
+                        </div>
+                    </div>
+                    <div style="width: 50px;"></div> <!-- Spacer for right-side icons -->
+                </div>
+            </div>
+            <div class="content" id="contentArea3">
+                <div class="apple-content">
+                    <section>
+                        <h1>iPhone 15 Pro</h1>
+                        <h2>Titanium. So strong. So light. So Pro.</h2>
+                        <div class="links">
+                            <a href="#">Learn more</a>
+                            <a href="#">Buy</a>
+                        </div>
+                        <img src="https://via.placeholder.com/800x400?text=iPhone+15+Pro" alt="iPhone 15 Pro">
+                    </section>
+                    <section>
+                        <h1>iPhone 15</h1>
+                        <h2>New camera. New design. Newphoria.</h2>
+                        <div class="links">
+                            <a href="#">Learn more</a>
+                            <a href="#">Buy</a>
+                        </div>
+                        <img src="https://via.placeholder.com/800x400?text=iPhone+15" alt="iPhone 15">
+                    </section>
+                    <section>
+                        <h1>Apple Vision Pro</h1>
+                        <h2>Welcome to the era of spatial computing.</h2>
+                        <div class="links">
+                            <a href="#">Learn more</a>
+                            <a href="#">Buy</a>
+                        </div>
+                        <img src="https://via.placeholder.com/800x400?text=Apple+Vision+Pro" alt="Apple Vision Pro">
+                    </section>
+                    <section>
+                        <div class="grid">
+                            <div class="grid-item">
+                                <h3>Apple Watch</h3>
+                                <p>Smarter. Brighter. Mightier.</p>
+                                <div class="links">
+                                    <a href="#">Learn more</a>
+                                    <a href="#">Buy</a>
+                                </div>
+                            </div>
+                            <div class="grid-item">
+                                <h3>MacBook Air</h3>
+                                <p>Lean. Mean. M3 machine.</p>
+                                <div class="links">
+                                    <a href="#">Learn more</a>
+                                    <a href="#">Buy</a>
+                                </div>
+                            </div>
+                            <div class="grid-item">
+                                <h3>iPad</h3>
+                                <p>Lovable. Drawable. Magical.</p>
+                                <div class="links">
+                                    <a href="#">Learn more</a>
+                                    <a href="#">Buy</a>
+                                </div>
+                            </div>
+                            <div class="grid-item">
+                                <h3>AirPods Pro</h3>
+                                <p>Adaptive Audio. Now playing.</p>
+                                <div class="links">
+                                    <a href="#">Learn more</a>
+                                    <a href="#">Buy</a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <footer>
+                        <div>
+                            <h4>Shop and Learn</h4>
+                            <a href="#">Store</a><br>
+                            <a href="#">Mac</a><br>
+                            <a href="#">iPad</a>
+                        </div>
+                        <div>
+                            <h4>Apple Wallet</h4>
+                            <a href="#">Wallet</a><br>
+                            <a href="#">Apple Card</a><br>
+                            <a href="#">Apple Pay</a>
+                        </div>
+                        <div>
+                            <h4>Entertainment</h4>
+                            <a href="#">Apple TV</a><br>
+                            <a href="#">Apple Music</a><br>
+                            <a href="#">Apple Arcade</a>
+                        </div>
+                        <div>
+                            <h4>About Apple</h4>
+                            <a href="#">Newsroom</a><br>
+                            <a href="#">Apple Leadership</a><br>
+                            <a href="#">Career Opportunities</a>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Content for 90s section
+        const web1Content = {
+            home: `
+                <h1>World Wide Web</h1>
+                <p>The WorldWideWeb (W3) is a wide-area <a href="#">hypermedia</a> information retrieval initiative aiming to give universal access to a large universe of documents.</p>
+                <p>Everything there is online about W3 is linked directly or indirectly to this document, including an <a href="#">executive summary</a> of the project, <a href="#">Mailing lists</a>, <a href="#">Policy</a>, November's <a href="#">W3 news</a>, <a href="#">Frequently Asked Questions</a>.</p>
+                <h2>What's out there?</h2>
+                <p><a href="#">Pointers to the world's online information</a>, <a href="#">subjects</a>, <a href="#">W3 servers</a>, etc.</p>
+            `,
+            news: `
+                <h1>W3 News</h1>
+                <p>Latest updates from the World Wide Web project as of November 1993.</p>
+                <ul>
+                    <li>New server updates released.</li>
+                    <li>Bug fixes in the Line Mode Browser.</li>
+                    <li>More documentation added to the library.</li>
+                </ul>
+                <p><a href="#">Back to Home</a></p>
+            `
+        };
+        const web1Urls = {
+            home: "http://info.cern.ch/hypertext/WWW/TheProject.html",
+            news: "http://info.cern.ch/hypertext/WWW/News.html"
+        };
+
+        // Content for 2000s section
+        const web2Content = {
+            home: `
+                <h1 style="font-family: 'Arial', sans-serif; color: #003087;">Welcome to My Web Portal</h1>
+                <p style="background: #fff url('https://www.transparenttextures.com/patterns/wood-pattern.png'); padding: 10px; border: 2px outset #999;">Your one-stop shop for news, email, and more! Check out our <a href="#" style="color: #ff4500; text-decoration: underline;">cool features</a>.</p>
+                <button style="padding: 5px 10px; background: #e0e0e0; border: 2px outset #999; cursor: pointer;">Click Me!</button>
+            `,
+            news: `
+                <h1 style="font-family: 'Arial', sans-serif; color: #003087;">News Section</h1>
+                <p style="background: #fff url('https://www.transparenttextures.com/patterns/wood-pattern.png'); padding: 10px; border: 2px outset #999;">Latest news updates from 2005!</p>
+                <ul>
+                    <li>Tech company launches new gadget.</li>
+                    <li>Stock market rises by 2%.</li>
+                    <li>Weather forecast: Sunny days ahead!</li>
+                </ul>
+                <p><a href="#" style="color: #ff4500; text-decoration: underline;">Back to Home</a></p>
+            `
+        };
+        const web2Urls = {
+            home: "http://www.myportal.com",
+            news: "http://www.myportal.com/news.html"
+        };
+
+        // Content for modern section
+        const web3Content = {
+            home: `
+                <div class="apple-content">
+                    <section>
+                        <h1>iPhone 15 Pro</h1>
+                        <h2>Titanium. So strong. So light. So Pro.</h2>
+                        <div class="links">
+                            <a href="#">Learn more</a>
+                            <a href="#">Buy</a>
+                        </div>
+                        <img src="https://via.placeholder.com/800x400?text=iPhone+15+Pro" alt="iPhone 15 Pro">
+                    </section>
+                    <section>
+                        <h1>iPhone 15</h1>
+                        <h2>New camera. New design. Newphoria.</h2>
+                        <div class="links">
+                            <a href="#">Learn more</a>
+                            <a href="#">Buy</a>
+                        </div>
+                        <img src="https://via.placeholder.com/800x400?text=iPhone+15" alt="iPhone 15">
+                    </section>
+                    <section>
+                        <h1>Apple Vision Pro</h1>
+                        <h2>Welcome to the era of spatial computing.</h2>
+                        <div class="links">
+                            <a href="#">Learn more</a>
+                            <a href="#">Buy</a>
+                        </div>
+                        <img src="https://via.placeholder.com/800x400?text=Apple+Vision+Pro" alt="Apple Vision Pro">
+                    </section>
+                    <section>
+                        <div class="grid">
+                            <div class="grid-item">
+                                <h3>Apple Watch</h3>
+                                <p>Smarter. Brighter. Mightier.</p>
+                                <div class="links">
+                                    <a href="#">Learn more</a>
+                                    <a href="#">Buy</a>
+                                </div>
+                            </div>
+                            <div class="grid-item">
+                                <h3>MacBook Air</h3>
+                                <p>Lean. Mean. M3 machine.</p>
+                                <div class="links">
+                                    <a href="#">Learn more</a>
+                                    <a href="#">Buy</a>
+                                </div>
+                            </div>
+                            <div class="grid-item">
+                                <h3>iPad</h3>
+                                <p>Lovable. Drawable. Magical.</p>
+                                <div class="links">
+                                    <a href="#">Learn more</a>
+                                    <a href="#">Buy</a>
+                                </div>
+                            </div>
+                            <div class="grid-item">
+                                <h3>AirPods Pro</h3>
+                                <p>Adaptive Audio. Now playing.</p>
+                                <div class="links">
+                                    <a href="#">Learn more</a>
+                                    <a href="#">Buy</a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <footer>
+                        <div>
+                            <h4>Shop and Learn</h4>
+                            <a href="#">Store</a><br>
+                            <a href="#">Mac</a><br>
+                            <a href="#">iPad</a>
+                        </div>
+                        <div>
+                            <h4>Apple Wallet</h4>
+                            <a href="#">Wallet</a><br>
+                            <a href="#">Apple Card</a><br>
+                            <a href="#">Apple Pay</a>
+                        </div>
+                        <div>
+                            <h4>Entertainment</h4>
+                            <a href="#">Apple TV</a><br>
+                            <a href="#">Apple Music</a><br>
+                            <a href="#">Apple Arcade</a>
+                        </div>
+                        <div>
+                            <h4>About Apple</h4>
+                            <a href="#">Newsroom</a><br>
+                            <a href="#">Apple Leadership</a><br>
+                            <a href="#">Career Opportunities</a>
+                        </div>
+                    </footer>
+                </div>
+            `,
+            products: `
+                <div class="apple-content">
+                    <section>
+                        <h1>Our Products</h1>
+                        <h2>Explore the latest from Apple.</h2>
+                        <div class="grid">
+                            <div class="grid-item">
+                                <h3>iPhone 14</h3>
+                                <p>A total powerhouse.</p>
+                                <div class="links">
+                                    <a href="#">Learn more</a>
+                                    <a href="#">Buy</a>
+                                </div>
+                            </div>
+                            <div class="grid-item">
+                                <h3>Apple TV 4K</h3>
+                                <p>The ultimate cinematic experience.</p>
+                                <div class="links">
+                                    <a href="#">Learn more</a>
+                                    <a href="#">Buy</a>
+                                </div>
+                            </div>
+                            <div class="grid-item">
+                                <h3>HomePod</h3>
+                                <p>Profound sound.</p>
+                                <div class="links">
+                                    <a href="#">Learn more</a>
+                                    <a href="#">Buy</a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <footer>
+                        <div>
+                            <h4>Shop and Learn</h4>
+                            <a href="#">Store</a><br>
+                            <a href="#">Mac</a><br>
+                            <a href="#">iPad</a>
+                        </div>
+                        <div>
+                            <h4>Apple Wallet</h4>
+                            <a href="#">Wallet</a><br>
+                            <a href="#">Apple Card</a><br>
+                            <a href="#">Apple Pay</a>
+                        </div>
+                        <div>
+                            <h4>Entertainment</h4>
+                            <a href="#">Apple TV</a><br>
+                            <a href="#">Apple Music</a><br>
+                            <a href="#">Apple Arcade</a>
+                        </div>
+                        <div>
+                            <h4>About Apple</h4>
+                            <a href="#">Newsroom</a><br>
+                            <a href="#">Apple Leadership</a><br>
+                            <a href="#">Career Opportunities</a>
+                        </div>
+                    </footer>
+                </div>
+            `
+        };
+        const web3Urls = {
+            home: "https://www.apple.com",
+            products: "https://www.apple.com/products"
+        };
+
+        // Initialize states
+        let web1State = { currentPage: 'home', history: ['home'], historyIndex: 0 };
+        let web2State = { currentPage: 'home', history: ['home'], historyIndex: 0 };
+        let web3State = { currentPage: 'home', history: ['home'], historyIndex: 0 };
+
+        // Elements for 90s section
+        const contentArea1 = document.getElementById('contentArea1');
+        const urlField1 = document.getElementById('urlField1');
+        const titleText1 = document.getElementById('titleText1');
+        const statusText1 = document.getElementById('statusText1');
+        const backButton1 = document.getElementById('backButton1');
+        const forwardButton1 = document.getElementById('forwardButton1');
+        const homeButton1 = document.getElementById('homeButton1');
+        const refreshButton1 = document.getElementById('refreshButton1');
+
+        // Elements for 2000s section
+        const contentArea2 = document.getElementById('contentArea2');
+        const urlField2 = document.getElementById('urlField2');
+        const titleText2 = document.getElementById('titleText2');
+        const statusText2 = document.getElementById('statusText2');
+        const backButton2 = document.getElementById('backButton2');
+        const forwardButton2 = document.getElementById('forwardButton2');
+        const homeButton2 = document.getElementById('homeButton2');
+        const refreshButton2 = document.getElementById('refreshButton2');
+
+        // Elements for modern section
+        const contentArea3 = document.getElementById('contentArea3');
+        const urlField3 = document.getElementById('urlField3');
+        const backButton3 = document.getElementById('backButton3');
+        const forwardButton3 = document.getElementById('forwardButton3');
+
+        // Toolbar functionality for 90s section
+        backButton1.addEventListener('click', () => {
+            if (web1State.historyIndex > 0) {
+                web1State.historyIndex--;
+                web1State.currentPage = web1State.history[web1State.historyIndex];
+                contentArea1.innerHTML = web1Content[web1State.currentPage];
+                urlField1.value = web1Urls[web1State.currentPage];
+                titleText1.textContent = `NCSA Mosaic 2.7b6 [${web1State.currentPage === 'home' ? 'The World Wide Web project' : 'W3 News'}]`;
+                statusText1.textContent = urlField1.value;
+            } else {
+                statusText1.textContent = 'No previous page';
+            }
+        });
+
+        forwardButton1.addEventListener('click', () => {
+            if (web1State.historyIndex < web1State.history.length - 1) {
+                web1State.historyIndex++;
+                web1State.currentPage = web1State.history[web1State.historyIndex];
+                contentArea1.innerHTML = web1Content[web1State.currentPage];
+                urlField1.value = web1Urls[web1State.currentPage];
+                titleText1.textContent = `NCSA Mosaic 2.7b6 [${web1State.currentPage === 'home' ? 'The World Wide Web project' : 'W3 News'}]`;
+                statusText1.textContent = urlField1.value;
+            } else {
+                statusText1.textContent = 'No next page';
+            }
+        });
+
+        homeButton1.addEventListener('click', () => {
+            web1State.currentPage = 'home';
+            web1State.history = web1State.history.slice(0, web1State.historyIndex + 1);
+            web1State.history.push('home');
+            web1State.historyIndex++;
+            contentArea1.innerHTML = web1Content.home;
+            urlField1.value = web1Urls.home;
+            titleText1.textContent = "NCSA Mosaic 2.7b6 [The World Wide Web project]";
+            statusText1.textContent = urlField1.value;
+        });
+
+        refreshButton1.addEventListener('click', () => {
+            contentArea1.innerHTML = web1Content[web1State.currentPage];
+            urlField1.value = web1Urls[web1State.currentPage];
+            statusText1.textContent = urlField1.value;
+        });
+
+        urlField1.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                statusText1.textContent = urlField1.value;
+            }
+        });
+
+        // Toolbar functionality for 2000s section
+        backButton2.addEventListener('click', () => {
+            if (web2State.historyIndex > 0) {
+                web2State.historyIndex--;
+                web2State.currentPage = web2State.history[web2State.historyIndex];
+                contentArea2.innerHTML = web2Content[web2State.currentPage];
+                urlField2.value = web2Urls[web2State.currentPage];
+                titleText2.textContent = `My Web Portal - 2000s Edition [${web2State.currentPage}]`;
+                statusText2.textContent = urlField2.value;
+            } else {
+                statusText2.textContent = 'No previous page';
+            }
+        });
+
+        forwardButton2.addEventListener('click', () => {
+            if (web2State.historyIndex < web2State.history.length - 1) {
+                web2State.historyIndex++;
+                web2State.currentPage = web2State.history[web2State.historyIndex];
+                contentArea2.innerHTML = web2Content[web2State.currentPage];
+                urlField2.value = web2Urls[web2State.currentPage];
+                titleText2.textContent = `My Web Portal - 2000s Edition [${web2State.currentPage}]`;
+                statusText2.textContent = urlField2.value;
+            } else {
+                statusText2.textContent = 'No next page';
+            }
+        });
+
+        homeButton2.addEventListener('click', () => {
+            web2State.currentPage = 'home';
+            web2State.history = web2State.history.slice(0, web2State.historyIndex + 1);
+            web2State.history.push('home');
+            web2State.historyIndex++;
+            contentArea2.innerHTML = web2Content.home;
+            urlField2.value = web2Urls.home;
+            titleText2.textContent = "My Web Portal - 2000s Edition";
+            statusText2.textContent = urlField2.value;
+        });
+
+        refreshButton2.addEventListener('click', () => {
+            contentArea2.innerHTML = web2Content[web2State.currentPage];
+            urlField2.value = web2Urls[web2State.currentPage];
+            statusText2.textContent = urlField2.value;
+        });
+
+        urlField2.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                statusText2.textContent = urlField2.value;
+            }
+        });
+
+        // Toolbar functionality for modern section
+        backButton3.addEventListener('click', () => {
+            if (web3State.historyIndex > 0) {
+                web3State.historyIndex--;
+                web3State.currentPage = web3State.history[web3State.historyIndex];
+                contentArea3.innerHTML = web3Content[web3State.currentPage];
+                urlField3.innerHTML = `<i class="fas fa-lock" style="margin-right: 5px; color: #0f9d58;"></i>${web3Urls[web3State.currentPage]}`;
+                // Re-attach scroll observer for new content
+                const sections = contentArea3.querySelectorAll('.apple-content section');
+                sections.forEach(section => observer.observe(section));
+            }
+        });
+
+        forwardButton3.addEventListener('click', () => {
+            if (web3State.historyIndex < web3State.history.length - 1) {
+                web3State.historyIndex++;
+                web3State.currentPage = web3State.history[web3State.historyIndex];
+                contentArea3.innerHTML = web3Content[web3State.currentPage];
+                urlField3.innerHTML = `<i class="fas fa-lock" style="margin-right: 5px; color: #0f9d58;"></i>${web3Urls[web3State.currentPage]}`;
+                // Re-attach scroll observer for new content
+                const sections = contentArea3.querySelectorAll('.apple-content section');
+                sections.forEach(section => observer.observe(section));
+            }
+        });
+
+        // Draggable functionality for each window
+        const windows = [document.getElementById('window1'), document.getElementById('window2'), document.getElementById('window3')];
+        windows.forEach(windowElement => {
+            let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+            const titleBar = windowElement.querySelector('.title-bar') || windowElement.querySelector('.chrome-frame');
+            titleBar.addEventListener('mousedown', dragMouseDown);
+
+            function dragMouseDown(e) {
+                e.preventDefault();
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                pos1 = windowElement.offsetLeft;
+                pos2 = windowElement.offsetTop;
+                document.addEventListener('mousemove', elementDrag);
+                document.addEventListener('mouseup', closeDragElement);
+            }
+
+            function elementDrag(e) {
+                e.preventDefault();
+                let newX = pos1 - (pos3 - e.clientX);
+                let newY = pos2 - (pos4 - e.clientY);
+                const section = windowElement.closest('.era-section');
+                const maxX = section.offsetWidth - windowElement.offsetWidth;
+                const maxY = section.offsetHeight - windowElement.offsetHeight;
+                newX = Math.max(0, Math.min(newX, maxX));
+                newY = Math.max(0, Math.min(newY, maxY));
+                windowElement.style.left = newX + 'px';
+                windowElement.style.top = newY + 'px';
+            }
+
+            function closeDragElement() {
+                document.removeEventListener('mousemove', elementDrag);
+                document.removeEventListener('mouseup', closeDragElement);
+            }
+
+            // Resizable functionality (for web1 and web2 only)
+            const resizeHandle = windowElement.querySelector('.resize-handle');
+            if (resizeHandle) {
+                let initialX, initialY, initialWidth, initialHeight;
+                resizeHandle.addEventListener('mousedown', startResize);
+
+                function startResize(e) {
+                    e.preventDefault();
+                    initialX = e.clientX;
+                    initialY = e.clientY;
+                    initialWidth = windowElement.offsetWidth;
+                    initialHeight = windowElement.offsetHeight;
+                    document.addEventListener('mousemove', doResize);
+                    document.addEventListener('mouseup', stopResize);
+                }
+
+                function doResize(e) {
+                    e.preventDefault();
+                    let newWidth = initialWidth + (e.clientX - initialX);
+                    let newHeight = initialHeight + (e.clientY - initialY);
+                    const minWidth = 400;
+                    const minHeight = 300;
+                    newWidth = Math.max(minWidth, newWidth);
+                    newHeight = Math.max(minHeight, newHeight);
+                    const section = windowElement.closest('.era-section');
+                    const maxWidth = section.offsetWidth - windowElement.offsetLeft;
+                    const maxHeight = section.offsetHeight - windowElement.offsetTop;
+                    newWidth = Math.min(maxWidth, newWidth);
+                    newHeight = Math.min(maxHeight, newHeight);
+                    windowElement.style.width = newWidth + 'px';
+                    windowElement.style.height = newHeight + 'px';
+                    const contentHeight = windowElement.classList.contains('web3') ? 80 : 95;
+                    windowElement.querySelector('.content').style.height = `calc(100% - ${contentHeight}px)`;
+                }
+
+                function stopResize() {
+                    document.removeEventListener('mousemove', doResize);
+                    document.removeEventListener('mouseup', stopResize);
+                }
+            }
+        });
+
+        // Scroll animation for Apple content sections
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Initial observer setup for modern section
+        const sections = document.querySelectorAll('.apple-content section');
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
